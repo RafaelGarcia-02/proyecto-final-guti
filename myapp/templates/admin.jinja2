@@ -1,0 +1,65 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Panel de Administración{% endblock %}
+
+{% block content %}
+<h2>Panel de Administración</h2>
+
+<h3>Autores</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <td>{{ autor.id }}</td>
+            <td>{{ autor.name }}</td>
+            <td>{{ autor.email }}</td>
+            <td>{{ autor.role }}</td>
+            <td>
+                <a href="{{ request.route_url('edit_autor', id=autor.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                <form method="post" action="{{ request.route_url('delete_autor', id=autor.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Cuadros</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Autor</th>
+            <th>Precio</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cuadro in cuadros %}
+        <tr>
+            <td>{{ cuadro.id }}</td>
+            <td>{{ cuadro.name }}</td>
+            <td>{{ cuadro.autor.name }}</td>
+            <td>{{ cuadro.precio or 'N/A' }}</td>
+            <td>
+                <a href="{{ request.route_url('edit_cuadro', id=cuadro.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                <form method="post" action="{{ request.route_url('delete_cuadro', id=cuadro.id) }}" style="display:inline;">
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro?')">Borrar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

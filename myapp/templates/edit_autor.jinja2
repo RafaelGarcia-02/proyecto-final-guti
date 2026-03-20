@@ -1,0 +1,50 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Editar Usuario{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-body">
+                <h2 class="card-title mb-4">Editar Usuario</h2>
+                
+                {% if error %}
+                    <div class="alert alert-danger">{{ error }}</div>
+                {% endif %}
+                
+                <form method="POST" action="{{ request.route_url('edit_autor', id=autor.id) }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Usuario</label>
+                        <input type="text" class="form-control" id="username" name="username" value="{{ autor.username }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="name" name="name" value="{{ autor.name }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ autor.email }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="prestigio" class="form-label">Prestigio</label>
+                        <input type="text" class="form-control" id="prestigio" name="prestigio" value="{{ autor.prestigio }}">
+                    </div>
+                    {% if request.user.role == 'admin' %}
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Rol</label>
+                        <select class="form-select" id="role" name="role" required>
+                            <option value="user" {% if autor.role == 'user' %}selected{% endif %}>Usuario</option>
+                            <option value="admin" {% if autor.role == 'admin' %}selected{% endif %}>Admin</option>
+                        </select>
+                    </div>
+                    {% endif %}
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Editar Cuadro{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <form method="post" action="{{ request.route_url('edit_cuadro', id=cuadro.id) }}">
+        <h2>Editar cuadro</h2>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre del cuadro</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ cuadro.name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="less_description" class="form-label">descripcion breve</label>
+            <input type="text" class="form-control" id="less_description" name="less_description" value="{{ cuadro.less_description }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Descripción</label>
+            <textarea class="form-control" id="description" name="description" rows="4" required>{{ cuadro.description }}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="url_imagen" class="form-label">URL de la imagen</label>
+            <input type="url" class="form-control" id="url_imagen" name="url_imagen" value="{{ cuadro.url_imagen }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="enVenta" class="form-label">¿En venta?</label>
+            <select class="form-select" id="enVenta" name="enVenta" required>
+                <option value="true" {% if cuadro.enVenta %}selected{% endif %}>Sí</option>
+                <option value="false" {% if not cuadro.enVenta %}selected{% endif %}>No</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="precio" class="form-label">Precio (opcional)</label>
+            <input type="number" class="form-control" id="precio" name="precio" value="{{ cuadro.precio }}" step="0.01">
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
