@@ -1,0 +1,66 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f4f4f4;
+    padding: 1em;
+    text-align: center;
+}
+
+nav a {
+    margin: 0 1em;
+}
+
+main {
+    padding: 1em;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+}
+
+form {
+    max-width: 400px;
+}
+
+label {
+    display: block;
+    margin-top: 1em;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5em;
+    margin-top: 0.5em;
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+}
+/* PARA EL CATÁLOGO (Cuadritos uniformes) */
+.card-img-custom {
+    width: 100%;       /* Ocupa todo el ancho de la tarjeta de Bootstrap */
+    height: 250px;     /* Altura fija para que todas las filas estén alineadas */
+    object-fit: cover; /* IMPORTANTE: Recorta un poco los bordes para rellenar el hueco */
+    object-position: center; 
+}
+
+/* PARA EL DETALLE (Imagen protagonista) */
+.img-detalle-full {
+    width: 100%;       /* Se adapta al ancho de la columna de detalle */
+    height: auto;      /* No le pongas altura fija para que no se estire */
+    max-height: 500px; /* Un límite para que no tengamos que hacer scroll infinito */
+    object-fit: contain; /* IMPORTANTE: Aquí NO recortes nada, muestra el cuadro entero */
+    background-color: #f8f9fa; /* Si el cuadro es muy vertical, rellena los lados con gris claro */
+}

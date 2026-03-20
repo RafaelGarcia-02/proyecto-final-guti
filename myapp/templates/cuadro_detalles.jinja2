@@ -1,0 +1,23 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Detalles del Cuadro{% endblock %}
+
+{% block content %}
+<h2>{{ cuadro.name }}</h2>
+<div class="card mb-4 shadow-sm">
+    <img src="{{ cuadro.url_imagen }}" class="card-img-top img-detalle-full" alt="{{ cuadro.name }}">
+    <div class="card-body">
+        <p class="card-text">{{ cuadro.description }}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Autor:</strong> {{ cuadro.autor.name }}</li>
+            <li class="list-group-item"><strong>En Venta:</strong> {{ 'Sí' if cuadro.enVenta else 'No' }}</li>
+            {% if cuadro.precio %} 
+            <li class="list-group-item"><strong>Precio:</strong> ${{ cuadro.precio }}</li>
+            {% endif %}
+        </ul>
+        <a href="{{ request.route_url('home') }}" class="btn btn-secondary mt-3">Volver a la Galería</a>
+    </div>
+</div>
+
+
+{% endblock %}

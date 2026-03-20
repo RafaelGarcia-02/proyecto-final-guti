@@ -1,0 +1,16 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Edit Item{% endblock %}
+
+{% block content %}
+<h2>Edit Item</h2>
+<form action="{{ request.route_url('edit', id=item.id) }}" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{ item.name }}" required>
+    <br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description">{{ item.description }}</textarea>
+    <br>
+    <button type="submit">Update</button>
+</form>
+{% endblock %}

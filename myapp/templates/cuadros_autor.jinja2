@@ -1,0 +1,25 @@
+//vista donde se muestran los cuadros de un autor
+{% extends "layout.jinja2" %}
+
+{% block title %}Cuadros del Autor{% endblock %}
+
+{% block content %}
+<h2>Cuadros de {{ autor.name }}</h2>
+<div class="row">
+        {% for cuadro in cuadros %}
+        <div class="col-md-4 mb-4"> <div class="card h-100 shadow-sm">
+                <img src="{{ cuadro.url_imagen }}" class="card-img-top card-img-custom" alt="{{ cuadro.name }}">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ cuadro.name }}</h5>
+                    <p class="card-text">{{ cuadro.less_description[:100] }}...</p>
+                </div>
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="/cuadros/{{ cuadro.id }}" class="btn btn-primary w-100">Ver mas detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<a href="{{ request.route_url('home') }}" class="btn btn-secondary mt-3">Volver a la Galería</a>
+{% endblock %}

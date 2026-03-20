@@ -1,0 +1,44 @@
+{% extends "layout.jinja2" %}
+
+{% block title %}Cuadros{% endblock %}
+
+{% block content %}
+<h2>Galería de Cuadros</h2>
+<div class="row">
+        {% for cuadro in cuadros %}
+        <div class="col-md-4 mb-4"> <div class="card h-100 shadow-sm">
+                <img src="{{ cuadro.url_imagen }}" class="card-img-top card-img-custom" alt="{{ cuadro.name }}">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ cuadro.name }}</h5>
+
+                    <p class="card-text">{{ cuadro.less_description[:100] }}...</p>
+                </div>
+                
+                <div class="card-footer bg-transparent border-top-0">
+                    <a href="/cuadros/{{ cuadro.id }}" class="btn btn-primary w-100">Ver mas detalles</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+   
+    <h2>Autores</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Ver Cuadros</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for autor in autores %}
+            <tr>
+                <td>{{ autor.name }}</td>
+                <td><a href="{{ request.route_url('cuadros_autor', id=autor.id) }}" class="btn btn-secondary">Ver Cuadros</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+
+{% endblock %}
